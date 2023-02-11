@@ -13,5 +13,14 @@ const beaconSchema = new Schema({
     timeStamp: Number
 });
 
+const recordingSchema = new Schema({
+    deviceID: String,
+    recordingActive: Boolean,
+    frequency: Number,
+    timeStamp: Number
+
+})
+
 //Export function to create "SomeModel" model class
 module.exports = mongoose.model('beacon', beaconSchema);
+module.exports = mongoose.model('recording', recordingSchema);

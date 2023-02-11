@@ -14,6 +14,8 @@ const router = express.Router();
 //mongoosePromise.connect('mongodb://localhost:27017/db', { useNewUrlParser: true });
 
 beacon = require('../models/beacon-schema')
+recording = require('../models/beacon-schema')
+
 const readResults = [];
 
 
@@ -26,6 +28,27 @@ router.post('/create', function (req, res, next) {
         res.send({"Message": "Created successfully"})
     })
 })
+
+router.post('/startrecord', function (req, res, next) {
+    const mQuery = req.body
+    recording.create(mQuery, function (err, mresp) {
+        if (err) {console.log("ERR",err)}
+        res.send({"Message": "Created successfully"})
+    })
+})
+
+router.get('/recordstatus', function (req, res, next) {
+
+    recording.find({} ,function(err,mered) {
+
+        res.json(mered)
+    }).sort({timeStamp:-1}).limit(1) // for MAX
+
+
+
+})
+
+
 
 
 //query with post request
