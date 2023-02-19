@@ -19,6 +19,15 @@ recording = require('../models/beacon-schema')
 const readResults = [];
 
 
+
+recording.find(function(err,mered) {
+
+    console.log(mered)
+    this.next
+}).sort({timeStamp:-1}).limit(1) // for MAX
+
+
+
 //create with post req
 router.post('/create', function (req, res, next) {
     const mQuery = req.body
